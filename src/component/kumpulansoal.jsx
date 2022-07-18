@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Kumpulansoal = ({data, setJawaban}) => {
+const Kumpulansoal = ({data, setJawaban, jawaban}) => {
     const handleInput =(e)=>{
         setJawaban(e.target.value);
     }
@@ -9,7 +9,7 @@ const Kumpulansoal = ({data, setJawaban}) => {
         {/* <div className='nomerSOal' >no {data.nomor}</div> */}
         <div className='mt-5 nomerSOal' > {data.nomor}. {data.soal}</div>
         <div>
-            <input type="text"  className='OutLine ukuranInput' onChange={handleInput}/>
+            <input type="text" value={jawaban}  className='OutLine ukuranInput' onChange={handleInput}/>
         </div>
     </div>
   )

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Kumpulansoal from "../component/kumpulansoal";
 import {useNavigate} from 'react-router-dom';
+import Timer from "../component/Timer";
 
 const Soal = () => {
     const [data, setData] = useState([])
@@ -10,7 +11,10 @@ const Soal = () => {
     const [salah, setSalah] = useState(0);
     const [benar, setBenar] = useState(0);
     const [jawaban, setJawaban] = useState("");
-    const total =  100 / length* benar;
+    const [timer, setTimer] = useState('00:00:00');
+    const [tidakdikerjakan, setTidakdikerjakan] = useState(0);
+
+    const total =  100 / length * benar;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -37,29 +41,41 @@ const Soal = () => {
             setNomerSoal(nomersoal + 1)
             if(jawaban === data.jawaban){
                 setBenar(benar + 1);
+                setJawaban("");
             }else{
                 setSalah(salah + 1);
+                setJawaban("");
             }
+            setJawaban("");
         }else{
-            navigate('/hasil', {state:{benar:benar, salah:salah, total:total}})
+            navigate('/hasil', {state:{benar:benar, salah:salah, total:total, tidakdikerjakan: length - salah - benar}})
         }
         setJawaban("");
     }
 
     const handleSubmit =()=>{
-        navigate('/hasil', {state:{benar:benar, salah:salah, total:total}})
+        navigate('/hasil', {state:{benar:benar, salah:salah, total:total, tidakdikerjakan: length -  salah - benar}})
     }
+
+    useEffect(()=>{
+        if(timer === '00:00:01'){
+            navigate('/hasil', {state:{benar:benar, salah:salah, total:total, tidakdikerjakan: length -  salah - benar}})
+    }},[timer])
    
   return (
     <div className="">
         <div className="d-flex justify-content-center navbar navbar-light bg-light font-monospace">
             <div className="font-Navbar" >Ujian kelas matematika ranto dot magang</div>
         </div>
+            <div className="d-block">
+                <Timer timer={timer} setTimer={setTimer}/> 
+            </div>
         {nomersoal !== length +1 ? (
             <div className="Kumpulan-soal  ">
             <Kumpulansoal 
             data={data} 
             setJawaban={setJawaban}
+            jawaban={jawaban}
             />
           </div>
         ):(

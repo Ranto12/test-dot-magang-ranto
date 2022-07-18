@@ -1,1 +1,0 @@
-export const URL = "https://62d53921d4406e523555c178.mockapi.io/api/ranto-dot/";
