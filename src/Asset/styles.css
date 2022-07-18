@@ -1,0 +1,43 @@
+.Kumpulan-soal{
+    height: 90vh;
+    min-height: 80vh;
+}
+.OutLine{
+    outline: none;
+}
+.card-login{
+    width: 100%;
+    height: 100%;
+    justify-content: center !important;
+    padding-left: 30%;
+    padding-right: 30%;
+    border-radius: 20px;
+}
+.card-login-container{
+   align-items: center;
+   justify-content: center !important;
+   border: 1px solid;
+   max-width: 100%;
+   background-color: aqua;
+   border-radius: 20px;
+   padding: 20px;
+}
+.font-Navbar{
+    font-size: 30px;
+}
+.nomerSOal{
+    font-size: 25px;
+}
+.ukuranInput{
+    width: 500px;
+    height: 50px;
+    font-size: 30px;
+    margin-left: 40px;
+    border-radius: 20px;
+    padding: 10px;
+}
+.hasil{
+    font-size: 30px;
+    margin:10%;
+    font-family: 'Courier New', Courier, monospace;
+}
